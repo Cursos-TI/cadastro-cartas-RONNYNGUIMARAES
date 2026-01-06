@@ -2,11 +2,11 @@
 
 int main() {
 
-    // ============================
+    // ====================================
     // MOVIMENTO DA TORRE
     // Estrutura utilizada: for
     // Movimento: 5 casas para a direita
-    // ============================
+    // ====================================
     int casasTorre = 5;
 
     printf("Movimento da Torre:\n");
