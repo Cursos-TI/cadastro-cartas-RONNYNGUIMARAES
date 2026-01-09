@@ -10,11 +10,13 @@ int main() {
     // =========================
     // DECLARAÇÃO DO TABULEIRO
     // =========================
+
     int tabuleiro[TAM_TABULEIRO][TAM_TABULEIRO];
 
-    // =========================
+    // ===========================
     // INICIALIZAÇÃO DO TABULEIRO
-    // =========================
+    // ===========================
+
     for (int i = 0; i < TAM_TABULEIRO; i++) {
         for (int j = 0; j < TAM_TABULEIRO; j++) {
             tabuleiro[i][j] = AGUA;
@@ -24,12 +26,14 @@ int main() {
     // =========================
     // DECLARAÇÃO DOS NAVIOS
     // =========================
+
     int navioHorizontal[TAM_NAVIO] = {NAVIO, NAVIO, NAVIO};
     int navioVertical[TAM_NAVIO]   = {NAVIO, NAVIO, NAVIO};
 
     // =========================
     // COORDENADAS INICIAIS
     // =========================
+
     // Navio horizontal
     int linhaH = 2;
     int colunaH = 3;
@@ -38,9 +42,10 @@ int main() {
     int linhaV = 5;
     int colunaV = 6;
 
-    // =========================
+    // ================================
     // POSICIONAMENTO NAVIO HORIZONTAL
-    // =========================
+    // ================================
+
     if (colunaH + TAM_NAVIO <= TAM_TABULEIRO) {
 
         int podePosicionar = 1;
@@ -60,9 +65,9 @@ int main() {
         }
     }
 
-    // =========================
+    // =============================
     // POSICIONAMENTO NAVIO VERTICAL
-    // =========================
+    // =============================
     if (linhaV + TAM_NAVIO <= TAM_TABULEIRO) {
 
         int podePosicionar = 1;
@@ -85,6 +90,7 @@ int main() {
     // =========================
     // EXIBIÇÃO DO TABULEIRO
     // =========================
+    
     printf("TABULEIRO BATALHA NAVAL\n\n");
 
     for (int i = 0; i < TAM_TABULEIRO; i++) {
