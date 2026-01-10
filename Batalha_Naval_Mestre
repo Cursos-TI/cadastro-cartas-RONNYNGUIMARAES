@@ -10,9 +10,9 @@
 
 int main() {
 
-    // =========================
+    // ========================
     // DECLARAÇÃO DO TABULEIRO
-    // =========================
+    // ========================
 
     int tabuleiro[TAM_TABULEIRO][TAM_TABULEIRO];
 
@@ -26,9 +26,9 @@ int main() {
         }
     }
 
-    // =========================
+    // ==========================
     // POSICIONAMENTO DOS NAVIOS
-    // =========================
+    // ==========================
 
     // Horizontal
     for (int i = 0; i < TAM_NAVIO; i++) {
@@ -60,9 +60,9 @@ int main() {
 
     int centro = TAM_HABILIDADE / 2;
 
-    // =========================
+    // ========================
     // CONSTRUÇÃO DO CONE (↓)
-    // =========================
+    // ========================
 
     for (int i = 0; i < TAM_HABILIDADE; i++) {
         for (int j = 0; j < TAM_HABILIDADE; j++) {
@@ -88,9 +88,9 @@ int main() {
         }
     }
 
-    // =========================
+    // ========================
     // CONSTRUÇÃO DO OCTAEDRO
-    // =========================
+    // ========================
 
     // CONSTRUÇÃO DO OCTAEDRO (SEM abs)
 
