@@ -50,9 +50,9 @@ int main() {
         tabuleiro[2 + i][8 - i] = NAVIO;
     }
 
-    // =========================
+    // ========================
     // MATRIZES DE HABILIDADES
-    // =========================
+    // ========================
 
     int cone[TAM_HABILIDADE][TAM_HABILIDADE];
     int cruz[TAM_HABILIDADE][TAM_HABILIDADE];
