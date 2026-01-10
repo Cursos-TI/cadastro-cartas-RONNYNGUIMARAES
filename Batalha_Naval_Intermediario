@@ -94,9 +94,9 @@ int main() {
         }
     }
 
-    // ====================================
+    // ==================================
     // POSICIONAMENTO NAVIO DIAGONAL (\)
-    // ====================================
+    // ==================================
 
     if (linhaD1 + TAM_NAVIO <= TAM_TABULEIRO &&
         colunaD1 + TAM_NAVIO <= TAM_TABULEIRO) {
@@ -116,9 +116,9 @@ int main() {
         }
     }
 
-    // ====================================
+    // ==================================
     // POSICIONAMENTO NAVIO DIAGONAL (/)
-    // ====================================
+    // ==================================
 
     if (linhaD2 + TAM_NAVIO <= TAM_TABULEIRO &&
         colunaD2 - (TAM_NAVIO - 1) >= 0) {
@@ -138,9 +138,9 @@ int main() {
         }
     }
 
-    // =========================
+    // =======================
     // EXIBIÇÃO DO TABULEIRO
-    // =========================
+    // =======================
 
     printf("TABULEIRO BATALHA NAVAL - NIVEL INTERMEDIARIO\n\n");
 
