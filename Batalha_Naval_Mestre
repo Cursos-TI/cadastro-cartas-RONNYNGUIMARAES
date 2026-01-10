@@ -1,0 +1,175 @@
+#include <stdio.h>
+
+#define TAM_TABULEIRO 10
+#define TAM_NAVIO 3
+#define TAM_HABILIDADE 5
+
+#define AGUA 0
+#define NAVIO 3
+#define EFEITO 5
+
+int main() {
+
+    // =========================
+    // DECLARAÇÃO DO TABULEIRO
+    // =========================
+
+    int tabuleiro[TAM_TABULEIRO][TAM_TABULEIRO];
+
+    // ===========================
+    // INICIALIZAÇÃO DO TABULEIRO
+    // ===========================
+
+    for (int i = 0; i < TAM_TABULEIRO; i++) {
+        for (int j = 0; j < TAM_TABULEIRO; j++) {
+            tabuleiro[i][j] = AGUA;
+        }
+    }
+
+    // =========================
+    // POSICIONAMENTO DOS NAVIOS
+    // =========================
+
+    // Horizontal
+    for (int i = 0; i < TAM_NAVIO; i++) {
+        tabuleiro[1][2 + i] = NAVIO;
+    }
+
+    // Vertical
+    for (int i = 0; i < TAM_NAVIO; i++) {
+        tabuleiro[4 + i][7] = NAVIO;
+    }
+
+    // Diagonal principal (\)
+    for (int i = 0; i < TAM_NAVIO; i++) {
+        tabuleiro[i][i] = NAVIO;
+    }
+
+    // Diagonal secundária (/)
+    for (int i = 0; i < TAM_NAVIO; i++) {
+        tabuleiro[2 + i][8 - i] = NAVIO;
+    }
+
+    // =========================
+    // MATRIZES DE HABILIDADES
+    // =========================
+
+    int cone[TAM_HABILIDADE][TAM_HABILIDADE];
+    int cruz[TAM_HABILIDADE][TAM_HABILIDADE];
+    int octaedro[TAM_HABILIDADE][TAM_HABILIDADE];
+
+    int centro = TAM_HABILIDADE / 2;
+
+    // =========================
+    // CONSTRUÇÃO DO CONE (↓)
+    // =========================
+
+    for (int i = 0; i < TAM_HABILIDADE; i++) {
+        for (int j = 0; j < TAM_HABILIDADE; j++) {
+            if (i >= centro && j >= centro - (i - centro) && j <= centro + (i - centro)) {
+                cone[i][j] = 1;
+            } else {
+                cone[i][j] = 0;
+            }
+        }
+    }
+
+    // =========================
+    // CONSTRUÇÃO DA CRUZ
+    // =========================
+
+    for (int i = 0; i < TAM_HABILIDADE; i++) {
+        for (int j = 0; j < TAM_HABILIDADE; j++) {
+            if (i == centro || j == centro) {
+                cruz[i][j] = 1;
+            } else {
+                cruz[i][j] = 0;
+            }
+        }
+    }
+
+    // =========================
+    // CONSTRUÇÃO DO OCTAEDRO
+    // =========================
+
+    // CONSTRUÇÃO DO OCTAEDRO (SEM abs)
+
+for (int i = 0; i < TAM_HABILIDADE; i++) {
+    for (int j = 0; j < TAM_HABILIDADE; j++) {
+
+        int distLinha = (i > centro) ? (i - centro) : (centro - i);
+        int distColuna = (j > centro) ? (j - centro) : (centro - j);
+
+        if (distLinha + distColuna <= centro) {
+            octaedro[i][j] = 1;
+        } else {
+            octaedro[i][j] = 0;
+        }
+    }
+}
+
+
+    // =========================
+    // ORIGENS DAS HABILIDADES
+    // =========================
+
+    int origemConeL = 6, origemConeC = 2;
+    int origemCruzL = 5, origemCruzC = 5;
+    int origemOctL  = 3, origemOctC  = 7;
+
+    // =========================
+    // SOBREPOSIÇÃO DAS HABILIDADES
+    // =========================
+
+    for (int i = 0; i < TAM_HABILIDADE; i++) {
+        for (int j = 0; j < TAM_HABILIDADE; j++) {
+
+            int tabL, tabC;
+
+            // Cone
+            tabL = origemConeL + i - centro;
+            tabC = origemConeC + j - centro;
+            if (cone[i][j] == 1 &&
+                tabL >= 0 && tabL < TAM_TABULEIRO &&
+                tabC >= 0 && tabC < TAM_TABULEIRO &&
+                tabuleiro[tabL][tabC] == AGUA) {
+                tabuleiro[tabL][tabC] = EFEITO;
+            }
+
+            // Cruz
+            tabL = origemCruzL + i - centro;
+            tabC = origemCruzC + j - centro;
+            if (cruz[i][j] == 1 &&
+                tabL >= 0 && tabL < TAM_TABULEIRO &&
+                tabC >= 0 && tabC < TAM_TABULEIRO &&
+                tabuleiro[tabL][tabC] == AGUA) {
+                tabuleiro[tabL][tabC] = EFEITO;
+            }
+
+            // Octaedro
+            tabL = origemOctL + i - centro;
+            tabC = origemOctC + j - centro;
+            if (octaedro[i][j] == 1 &&
+                tabL >= 0 && tabL < TAM_TABULEIRO &&
+                tabC >= 0 && tabC < TAM_TABULEIRO &&
+                tabuleiro[tabL][tabC] == AGUA) {
+                tabuleiro[tabL][tabC] = EFEITO;
+            }
+        }
+    }
+
+    // =========================
+    // EXIBIÇÃO DO TABULEIRO
+    // =========================
+
+    printf("TABULEIRO BATALHA NAVAL - NIVEL AVANCADO\n\n");
+
+    for (int i = 0; i < TAM_TABULEIRO; i++) {
+        for (int j = 0; j < TAM_TABULEIRO; j++) {
+            printf("%d ", tabuleiro[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
